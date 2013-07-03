@@ -1,0 +1,1 @@
+sources=( "https://github.com/trq/$PACKAGE_NAME/archive/$PACKAGE_VERSION.tar.gz" )
