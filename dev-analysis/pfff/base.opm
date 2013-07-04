@@ -1,1 +1,1 @@
-sources=( "https://github.com/facebook/${PACKAGE_NAME}/archive/RELEASE-${PACKAGE_VERSION}.tar.gz" )
+sources=( "https://github.com/facebook/${PACKAGE_NAME}/archive/${PACKAGE_VERSION}.tar.gz" )
