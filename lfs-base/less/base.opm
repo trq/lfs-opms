@@ -1,1 +1,1 @@
-sources=( http://www.greenwoodsoftware.com/less/less-451.tar.gz )
+sources=( "http://www.greenwoodsoftware.com/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

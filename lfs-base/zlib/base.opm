@@ -1,1 +1,1 @@
-sources=( http://www.zlib.net/zlib-1.2.7.tar.bz2 )
+]ources=( "http://www.zlib.net/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

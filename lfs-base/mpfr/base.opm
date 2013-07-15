@@ -1,1 +1,1 @@
-sources=( http://www.mpfr.org/mpfr-3.1.1/mpfr-3.1.1.tar.xz )
+sources=( "http://www.mpfr.org/${PACKAGE_NAME}-${PACKAGE_VERSION}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

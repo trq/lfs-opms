@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/gawk/gawk-4.0.2.tar.xz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

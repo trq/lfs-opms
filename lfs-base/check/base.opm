@@ -1,1 +1,1 @@
-sources=( http://sourceforge.net/projects/check/files/check/0.9.9/check-0.9.9.tar.gz )
+sources=( "http://sourceforge.net/projects/${PACKAGE_NAME}/files/${PACKAGE_NAME}/${PACKAGE_VERSION}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

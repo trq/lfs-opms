@@ -1,1 +1,1 @@
-sources=( http://anduin.linuxfromscratch.org/sources/other/udev-lfs-197-2.tar.bz2 )
+sources=( "http://anduin.linuxfromscratch.org/sources/other/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

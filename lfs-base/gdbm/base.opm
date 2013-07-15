@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/gdbm/gdbm-1.10.tar.gz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

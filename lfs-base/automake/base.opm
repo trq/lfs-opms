@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/automake/automake-1.13.1.tar.xz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

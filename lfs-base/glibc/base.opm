@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/glibc/glibc-2.17.tar.xz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

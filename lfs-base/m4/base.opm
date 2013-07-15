@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/m4/m4-1.4.16.tar.bz2 )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

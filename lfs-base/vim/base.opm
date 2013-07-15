@@ -1,1 +1,1 @@
-sources=( ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2 )
+sources=( "ftp://ftp.vim.org/pub/${PACKAGE_NAME}/unix/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

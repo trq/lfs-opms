@@ -1,1 +1,1 @@
-sources=( http://tukaani.org/xz/xz-5.0.4.tar.xz )
+sources=( "http://tukaani.org/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

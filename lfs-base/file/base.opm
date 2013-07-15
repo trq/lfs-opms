@@ -1,1 +1,1 @@
-sources=( ftp://ftp.astron.com/pub/file/file-5.13.tar.gz )
+sources=( "ftp://ftp.astron.com/pub/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )
