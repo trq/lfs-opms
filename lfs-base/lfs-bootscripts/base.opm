@@ -1,1 +1,1 @@
-sources=( http://www.linuxfromscratch.org/lfs/downloads/7.3/lfs-bootscripts-20130123.tar.bz2 )
+sources=( "http://www.linuxfromscratch.org/lfs/downloads/7.3/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

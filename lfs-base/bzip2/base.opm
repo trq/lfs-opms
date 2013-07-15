@@ -1,1 +1,1 @@
-sources=( http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz )
+sources=( "http://www.bzip.org/${PACKAGE_VERSION}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

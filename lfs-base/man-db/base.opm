@@ -1,1 +1,1 @@
-sources=( http://download.savannah.gnu.org/releases/man-db/man-db-2.6.3.tar.xz )
+sources=( "http://download.savannah.gnu.org/releases/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

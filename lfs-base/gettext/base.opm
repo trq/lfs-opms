@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/gettext/gettext-0.18.2.tar.gz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

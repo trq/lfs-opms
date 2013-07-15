@@ -1,1 +1,1 @@
-sources=( http://download.savannah.gnu.org/releases/sysvinit/sysvinit-2.88dsf.tar.bz2 )
+sources=( "http://download.savannah.gnu.org/releases/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

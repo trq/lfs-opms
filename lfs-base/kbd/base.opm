@@ -1,1 +1,1 @@
-sources=( http://ftp.altlinux.org/pub/people/legion/kbd/kbd-1.15.5.tar.gz )
+sources=( "http://ftp.altlinux.org/pub/people/legion/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )

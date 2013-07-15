@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/grep/grep-2.14.tar.xz )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

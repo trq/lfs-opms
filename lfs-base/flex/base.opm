@@ -1,1 +1,1 @@
-sources=( http://prdownloads.sourceforge.net/flex/flex-2.5.37.tar.bz2 )
+sources=( "http://prdownloads.sourceforge.net/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

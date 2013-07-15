@@ -1,1 +1,1 @@
-sources=( http://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-12.tar.xz )
+sources=( "http://www.kernel.org/pub/linux/utils/kernel/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

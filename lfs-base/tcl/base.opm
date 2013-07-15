@@ -1,1 +1,1 @@
-sources=( http://prdownloads.sourceforge.net/tcl/tcl8.6.0-src.tar.gz )
+sources=( "http://prdownloads.sourceforge.net/${PACKAGE_NAME}/${PACKAGE_NAME}${PACKAGE_VERSION}-src.tar.gz" )

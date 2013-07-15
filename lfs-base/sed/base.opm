@@ -1,1 +1,1 @@
-sources=( http://ftp.gnu.org/gnu/sed/sed-4.2.2.tar.bz2 )
+sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

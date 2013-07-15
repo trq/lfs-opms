@@ -1,1 +1,1 @@
-sources=( http://www.kernel.org/pub/linux/kernel/v3.x/linux-3.8.1.tar.xz )
+sources=( "http://www.kernel.org/pub/${PACKAGE_NAME}/kernel/v3.x/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

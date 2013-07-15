@@ -1,1 +1,1 @@
-sources=( http://www.freedesktop.org/software/systemd/systemd-197.tar.xz )
+sources=( "http://www.freedesktop.org/software/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

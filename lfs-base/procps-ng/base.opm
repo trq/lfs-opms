@@ -1,1 +1,1 @@
-sources=( http://sourceforge.net/projects/procps-ng/files/Production/procps-ng-3.3.6.tar.xz )
+sources=( "http://sourceforge.net/projects/${PACKAGE_NAME}/files/Production/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )
