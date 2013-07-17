@@ -1,11 +1,13 @@
 checksum=33adb18c3048d057ac58d07a3f1adb38
 
 opm.configure() {
-    msg "Configuring source ..."
-    cd "$SOURCEDIR";
+    opm.util.requires_dir ${BUILDDIR}
 
-    [ -e ./configure ] && try ./configure \
-        --prefix=${CONF_PREFIX}    \
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    [ -e ${SOURCEDIR}/configure ] && try ${SOURCEDIR}/configure \
+        --prefix=${CONFIG_PREFIX}    \
         --with-sysroot=$LFS        \
         --with-lib-path=/tools/lib \
         --target=$LFS_TGT          \
