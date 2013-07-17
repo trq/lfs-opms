@@ -1,1 +1,2 @@
 sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )
+description="The GCC package contains the GNU compiler collection, which includes the C and C++ compilers."
