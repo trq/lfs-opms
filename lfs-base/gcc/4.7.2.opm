@@ -40,25 +40,25 @@ opm.configure() {
     msg "Configuring source ..."
     cd "$BUILDDIR";
 
-    [ -e ${SOURCEDIR}/configure ] && try ${SOURCEDIR}/configure \
-        --target=${CONFIG_TARGET:=$(uname -m)-lfs-linux-gnu}    \
-        --prefix=${CONFIG_PREFIX:=/usr}                         \
-        --with-sysroot=$LFS                                     \
-        --with-newlib                                           \
-        --without-headers                                       \
-        --with-local-prefix=/tools                              \
-        --with-native-system-header-dir=/tools/include          \
-        --disable-nls                                           \
-        --disable-shared                                        \
-        --disable-multilib                                      \
-        --disable-decimal-float                                 \
-        --disable-threads                                       \
-        --disable-libmudflap                                    \
-        --disable-libssp                                        \
-        --disable-libgomp                                       \
-        --disable-libquadmath                                   \
-        --enable-languages=c                                    \
-        --with-mpfr-include=${SOURCEDIR}/mpfr/src               \
+    [ -e ${SOURCEDIR}/configure ] && try ${SOURCEDIR}/configure         \
+        --target=${CONFIG_TARGET:=$(uname -m)-lfs-linux-gnu}            \
+        --prefix=${CONFIG_PREFIX:=/usr}                                 \
+        --with-sysroot=$LFS                                             \
+        --with-newlib                                                   \
+        --without-headers                                               \
+        --with-local-prefix=${CONFIG_PREFIX:=/usr}                      \
+        --with-native-system-header-dir=${CONFIG_PREFIX:=/usr}/include  \
+        --disable-nls                                                   \
+        --disable-shared                                                \
+        --disable-multilib                                              \
+        --disable-decimal-float                                         \
+        --disable-threads                                               \
+        --disable-libmudflap                                            \
+        --disable-libssp                                                \
+        --disable-libgomp                                               \
+        --disable-libquadmath                                           \
+        --enable-languages=c                                            \
+        --with-mpfr-include=${SOURCEDIR}/mpfr/src                       \
         --with-mpfr-lib=${BUILDDIR}/mpfr/src/.libs
 }
 
