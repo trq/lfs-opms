@@ -1,6 +1,7 @@
 checksum=33adb18c3048d057ac58d07a3f1adb38
 
 opm.configure() {
+    opm.util.requires_stage "prepare"
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
@@ -13,4 +14,6 @@ opm.configure() {
         --target=${CONFIG_TARGET}   \
         --disable-nls               \
         --disable-werror
+
+    opm.util.complete_stage "configure"
 }
