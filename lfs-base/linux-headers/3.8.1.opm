@@ -1,0 +1,10 @@
+checksum=093b172f907d5455a6746418ad18f5bc
+
+opm.install() {
+    cd ${SOURCEDIR}
+    make mrproper
+
+    make headers_check
+    make INSTALL_HDR_PATH=dest headers_install
+    cp -rv dest/include/* ${CONFIG_PREFIX}/include
+}

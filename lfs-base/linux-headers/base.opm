@@ -1,0 +1,14 @@
+sources=( "http://www.kernel.org/pub/linux/kernel/v3.x/linux-${PACKAGE_VERSION}.tar.xz" )
+description="The Linux API Headers expose the kernel's API for use by Glibc."
+
+# Because we are actually using Linux's source and not
+# *linux-headers* we need to manually override this.
+export SOURCEDIR="${WORKDIR}/linux-${PACKAGE_VERSION}"
+
+opm.prepare() { :; }
+opm.configure() { :; }
+opm.compile() { :; }
+opm.preinstall() { :; }
+opm.postinstall() { :; }
+opm.package() { :; }
+opm.merge() { :; }
