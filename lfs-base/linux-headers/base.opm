@@ -10,5 +10,3 @@ opm.configure() { :; }
 opm.compile() { :; }
 opm.preinstall() { :; }
 opm.postinstall() { :; }
-opm.package() { :; }
-opm.merge() { :; }
