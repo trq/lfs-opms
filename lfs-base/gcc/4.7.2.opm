@@ -40,7 +40,7 @@ opm.configure() {
     msg "Configuring source ..."
     cd "$BUILDDIR";
 
-    [ -e ${SOURCEDIR}/configure ] && try ${SOURCEDIR}/configure         \
+    opm.util.configure \
         --target=${CONFIG_TARGET:=$(uname -m)-lfs-linux-gnu}            \
         --prefix=${CONFIG_PREFIX:=/usr}                                 \
         --with-sysroot=$LFS                                             \
