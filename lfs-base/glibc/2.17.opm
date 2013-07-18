@@ -1,1 +1,29 @@
 checksum=87bf675c8ee523ebda4803e8e1cec638
+
+opm.configure() {
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    opm.util.configure \
+        --prefix=${CONFIG_PREFIX:=/usr}                 \
+        --host=${CONFIG_TARGET}                         \
+        --build=$(${SOURCEDIR}/scripts/config.guess)    \
+        --disable-profile                               \
+        --enable-kernel=2.6.25                          \
+        --with-headers=${CONFIG_PREFIX:=/usr}/include   \
+        libc_cv_forced_unwind=yes                       \
+        libc_cv_ctors_header=yes                        \
+        libc_cv_c_cleanup=yes
+}
+
+opm.postinstall() {
+    msg "Testing Toolchain ..."
+    cd "$BUILDDIR";
+
+    echo 'main(){}' > dummy.c
+    ${CONFIG_TARGET}-gcc dummy.c
+    readelf -l a.out | grep ': /tools'
+    rm -v dummy.c a.out
+}
