@@ -7,10 +7,10 @@ opm.configure() {
     cd "$BUILDDIR";
 
     [ -e ${SOURCEDIR}/configure ] && try ${SOURCEDIR}/configure \
-        --prefix=${CONFIG_PREFIX}    \
-        --with-sysroot=$LFS        \
-        --with-lib-path=/tools/lib \
-        --target=$LFS_TGT          \
-        --disable-nls              \
+        --prefix=${CONFIG_PREFIX}   \
+        --with-sysroot=$LFS         \
+        --with-lib-path=/tools/lib  \
+        --target=${CONFIG_TARGET}   \
+        --disable-nls               \
         --disable-werror
 }
