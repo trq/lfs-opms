@@ -1,0 +1,33 @@
+checksum=33adb18c3048d057ac58d07a3f1adb38
+
+opm.configure() {
+    opm.util.requires_stage "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    CC=${CONFIG_TARGET}-gcc
+    AR=${CONFIG_TARGET}-ar
+    RANLIB=${CONFIG_TARGET}-ranlib
+
+    opm.util.configure              \
+        --prefix=${CONFIG_PREFIX}   \
+        --disable-nls               \
+        --with-lib-path=${CONFIG_PREFIX}/lib
+
+    opm.util.complete_stage "configure"
+}
+
+opm.postinstall() {
+    opm.util.requires_stage "install"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Prepare the linker for 'Re-adjusting' phase ..."
+
+    cd "$BUILDDIR";
+
+    make -C ld clean
+    make -C ld LIB_PATH=/usr/lib:/lib
+    cp -v ld/ld-new ${CONFIG_PREFIX}/bin
+}
