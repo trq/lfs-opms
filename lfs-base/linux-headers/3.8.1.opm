@@ -20,7 +20,7 @@ opm.merge() {
 
     if [ -f ${PKGDIR}/${PACKAGE}.tar.gz ]; then
         msg "Merging '${PACKAGE}' into ${CONFIG_PREFIX} ..."
-        sudo tar xvf ${PKGDIR}/${PACKAGE}.tar.gz -C ${CONFIG_PREFIX} > ${METADIR}/${PACKAGE}.installed
+        tar xvf ${PKGDIR}/${PACKAGE}.tar.gz -C ${CONFIG_PREFIX} > ${METADIR}/${PACKAGE}.installed
     fi
 
     opm.util.complete_stage "merge"
