@@ -1,6 +1,7 @@
 checksum=87bf675c8ee523ebda4803e8e1cec638
 
 opm.configure() {
+    opm.util.requires_stage "prepare"
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
@@ -16,9 +17,13 @@ opm.configure() {
         libc_cv_forced_unwind=yes                       \
         libc_cv_ctors_header=yes                        \
         libc_cv_c_cleanup=yes
+
+    opm.util.complate_stage "configure"
 }
 
 opm.postinstall() {
+    opm.util.requires_stage "install"
+
     msg "Testing Toolchain ..."
     cd "$BUILDDIR";
 
@@ -26,4 +31,6 @@ opm.postinstall() {
     ${CONFIG_TARGET}-gcc dummy.c
     readelf -l a.out | grep ': /tools'
     rm -v dummy.c a.out
+
+    opm.util.complete_stage "postinstall"
 }

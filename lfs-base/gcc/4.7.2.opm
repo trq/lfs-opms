@@ -1,6 +1,7 @@
 checksum=cc308a0891e778cfda7a151ab8a6e762
 
 opm.prepare() {
+    opm.util.requires_stage "unpack"
     msg "Preparing source ..."
     cd ${SOURCEDIR}
 
@@ -32,9 +33,12 @@ opm.prepare() {
 
     sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure
     sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure
+
+    opm.util.complete_stage "prepare"
 }
 
 opm.configure() {
+    opm.util.requires_stage "prepare"
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
@@ -60,9 +64,15 @@ opm.configure() {
         --enable-languages=c                                            \
         --with-mpfr-include=${SOURCEDIR}/mpfr/src                       \
         --with-mpfr-lib=${BUILDDIR}/mpfr/src/.libs
+
+    opm.util.complete_stage "configure"
 }
 
 opm.postinstall() {
+    opm.util.requires_stage "install"
+
     cd "$BUILDDIR";
     ln -sv libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
+
+    opm.util.complete_stage "postinstall"
 }
