@@ -30,4 +30,6 @@ opm.postinstall() {
     make -C ld clean
     make -C ld LIB_PATH=/usr/lib:/lib
     cp -v ld/ld-new ${CONFIG_PREFIX}/bin
+
+    opm.util.complete_stage "postinstall"
 }
