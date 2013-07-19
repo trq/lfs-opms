@@ -6,4 +6,5 @@ opm.merge() {
     opm lfs-base/binutils-2.23.1 merge
     opm lfs-base/gcc-4.7.2 merge
     opm lfs-base/linux-headers-3.8.1 merge
+    opm lfs-base/glibc-2.17 merge
 }
