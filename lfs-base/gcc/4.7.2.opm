@@ -35,7 +35,7 @@ opm.prepare() {
     sed -i '/k prot/agcc_cv_libc_provides_ssp=yes' gcc/configure
     sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure
 
-    opm.syage.complete "prepare"
+    opm.stage.complete "prepare"
 }
 
 opm.configure() {

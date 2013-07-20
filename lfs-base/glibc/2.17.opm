@@ -22,9 +22,9 @@ opm.configure() {
     opm.stage.complete "configure"
 }
 
-opm.postinstall() {
-    opm.stage.start "posinstall"
-    opm.stage.requires "install"
+opm.postmerge() {
+    opm.stage.start "postmerge"
+    opm.stage.requires "merge"
 
     msg "Testing Toolchain ..."
     cd "$BUILDDIR";

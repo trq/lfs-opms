@@ -18,3 +18,14 @@ opm.configure() {
 
     opm.stage.complete "configure"
 }
+
+opm.preinstall() {
+    opm.stage.start "preinstall"
+    opm.stage.requires "compile"
+
+    case $(uname -m) in
+        x86_64) mkdir -v ${CONFIG_PREFIX}/lib && ln -sv lib ${CONFIG_PREFIX}/lib64 ;;
+    esac
+
+    opm.stage.complete "preinstall"
+}

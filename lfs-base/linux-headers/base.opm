@@ -5,8 +5,14 @@ description="The Linux API Headers expose the kernel's API for use by Glibc."
 # *linux-headers* we need to manually override this.
 export SOURCEDIR="${WORKDIR}/linux-${PACKAGE_VERSION}"
 
-opm.prepare() { :; }
-opm.configure() { :; }
-opm.compile() { :; }
-opm.preinstall() { :; }
-opm.postinstall() { :; }
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+    opm.stage.complete "compile"
+}
