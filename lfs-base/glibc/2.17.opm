@@ -1,7 +1,8 @@
 checksum=87bf675c8ee523ebda4803e8e1cec638
 
 opm.configure() {
-    opm.util.requires_stage "prepare"
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
@@ -18,19 +19,20 @@ opm.configure() {
         libc_cv_ctors_header=yes                        \
         libc_cv_c_cleanup=yes
 
-    opm.util.complate_stage "configure"
+    opm.stage.complete "configure"
 }
 
 opm.postinstall() {
-    opm.util.requires_stage "install"
+    opm.stage.start "posinstall"
+    opm.stage.requires "install"
 
     msg "Testing Toolchain ..."
     cd "$BUILDDIR";
 
     echo 'main(){}' > dummy.c
     ${CONFIG_TARGET}-gcc dummy.c
-    readelf -l a.out | grep ': /tools'
+    readelf -l a.out | grep ': /tools' && success "Success!"
     rm -v dummy.c a.out
 
-    opm.util.complete_stage "postinstall"
+    opm.stage.complete "postinstall"
 }

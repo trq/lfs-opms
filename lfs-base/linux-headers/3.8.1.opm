@@ -1,7 +1,8 @@
 checksum=093b172f907d5455a6746418ad18f5bc
 
 opm.install() {
-    opm.util.requires_stage "preinstall"
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
     opm.util.requires_dir ${INSTDIR}/include
 
     cd ${SOURCEDIR}
@@ -11,11 +12,12 @@ opm.install() {
     make INSTALL_HDR_PATH=dest headers_install
     cp -rv dest/include/* ${INSTDIR}/include/
 
-    opm.util.complete_stage "install"
+    opm.stage.complete "install"
 }
 
 opm.merge() {
-    opm.util.requires_stage "package"
+    opm.stage.start "merge"
+    opm.stage.requires "package"
     opm.util.requires_dir ${METADIR}
 
     if [ -f ${PKGDIR}/${PACKAGE}.tar.gz ]; then
@@ -23,5 +25,5 @@ opm.merge() {
         tar xvf ${PKGDIR}/${PACKAGE}.tar.gz -C ${CONFIG_PREFIX} > ${METADIR}/${PACKAGE}.installed
     fi
 
-    opm.util.complete_stage "merge"
+    opm.stage.complete "merge"
 }
