@@ -1,0 +1,78 @@
+checksum=cc308a0891e778cfda7a151ab8a6e762
+
+opm.prepare() {
+    opm.stage.start "prepare"
+    opm.stage.requires "unpack"
+    msg "Preparing source ..."
+    cd ${SOURCEDIR}
+
+    cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $($CONFIG_TARGET-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+    cp -v gcc/Makefile.in{,.tmp}
+    sed 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in.tmp > gcc/Makefile.in
+
+    opm lfs-base/mpfr-3.1.1 fetch unpack
+    mv ../../../mpfr-3.1.1/work/mpfr-3.1.1 mpfr
+    rm -fr ../../../mpfr-3.1.1
+
+    opm lfs-base/gmp-5.1.1 fetch unpack
+    mv ../../../gmp-5.1.1/work/gmp-5.1.1 gmp
+    rm -fr ../../../gmp-5.1.1
+
+    opm lfs-base/mpc-1.0.1 fetch unpack
+    mv ../../../mpc-1.0.1/work/mpc-1.0.1 mpc
+    rm -fr ../../../mpc-1.0.1
+
+    for file in \
+        $(find gcc/config -name linux64.h -o -name linux.h -o -name sysv4.h)
+    do
+        cp -uv $file{,.orig}
+        sed -e 's@/lib\(64\)\?\(32\)\?/ld@/tools&@g' \
+            -e 's@/usr@/tools@g' $file.orig > $file
+        echo '
+#undef STANDARD_STARTFILE_PREFIX_1
+#undef STANDARD_STARTFILE_PREFIX_2
+#define STANDARD_STARTFILE_PREFIX_1 "/tools/lib/"
+#define STANDARD_STARTFILE_PREFIX_2 ""' >> $file
+        touch $file.orig
+    done
+
+    sed -i 's/BUILD_INFO=info/BUILD_INFO=/' gcc/configure
+
+    opm.stage.complete "prepare"
+}
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    CC=$CONFIG_TARGET-gcc
+    AR=$CONFIG_TARGET-ar
+    RANLIB=$CONFIG_TARGET-ranlib
+
+    opm.util.configure                                                  \
+        --prefix=${CONFIG_PREFIX:=/usr}                                 \
+        --with-local-prefix=$CONFIG_PREFIX                              \
+        --with-native-system-header-dir=$CONFIG_PREFIX/include          \
+        --enable-clocale=gnu                                            \
+        --enable-shared                                                 \
+        --enable-threads=posix                                          \
+        --enable-__cxa_atexit                                           \
+        --enable-languages=c,c++                                        \
+        --disable-libstdcxx-pch                                         \
+        --disable-multilib                                              \
+        --disable-bootstrap                                             \
+        --disable-libgomp                                               \
+        --with-mpfr-include=${SOURCEDIR}/mpfr/src                       \
+        --with-mpfr-lib=${BUILDDIR}/mpfr/src/.libs
+
+    opm.stage.complete "configure"
+}
+
+opm.postmerge() {
+    cd "$BUILDDIR";
+    ln -sv gcc /tools/bin/cc
+}
