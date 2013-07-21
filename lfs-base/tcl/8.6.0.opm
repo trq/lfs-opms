@@ -1,1 +1,20 @@
 checksum=573aa5fe678e9185ef2b3c56b24658d3
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    # temporarely edit the source directory so that we can locate configure
+    src=$SOURCEDIR
+    SOURCEDIR=$src/unix
+
+    opm.util.configure --prefix=${CONFIG_PREFIX:=/usr} \
+
+    SOURCEDIR=$src
+
+    opm.stage.complete "configure"
+}

@@ -1,1 +1,3 @@
 sources=( "http://prdownloads.sourceforge.net/${PACKAGE_NAME}/${PACKAGE_NAME}${PACKAGE_VERSION}-src.tar.gz" )
+
+SOURCEDIR=$WORKDIR/${PACKAGE_NAME}${PACKAGE_VERSION}
