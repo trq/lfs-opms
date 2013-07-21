@@ -1,2 +1,2 @@
-description="The Binutils package contains a linker, an assembler, and other tools for handling object files."
 sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )
+description="The Binutils package contains a linker, an assembler, and other tools for handling object files."
