@@ -1,7 +1,8 @@
 checksum=33adb18c3048d057ac58d07a3f1adb38
 
 opm.configure() {
-    opm.util.requires_stage "prepare"
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
@@ -16,13 +17,10 @@ opm.configure() {
         --disable-nls               \
         --with-lib-path=${CONFIG_PREFIX}/lib
 
-    opm.util.complete_stage "configure"
+    opm.stage.complete "configure"
 }
 
-opm.postinstall() {
-    opm.util.requires_stage "install"
-    opm.util.requires_dir ${BUILDDIR}
-
+opm.postmerge() {
     msg "Prepare the linker for 'Re-adjusting' phase ..."
 
     cd "$BUILDDIR";
@@ -30,6 +28,4 @@ opm.postinstall() {
     make -C ld clean
     make -C ld LIB_PATH=/usr/lib:/lib
     cp -v ld/ld-new ${CONFIG_PREFIX}/bin
-
-    opm.util.complete_stage "postinstall"
 }

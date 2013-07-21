@@ -1,5 +1,5 @@
 # The virtual flag enables this package to skip any
-# stage based dependecny checking / executing.
+# stage based dependency checking / executing.
 virtual=1
 
 opm.merge() {
