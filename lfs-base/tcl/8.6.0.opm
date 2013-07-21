@@ -18,3 +18,28 @@ opm.configure() {
 
     opm.stage.complete "configure"
 }
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}
+
+    msg "Installing into '$INSTDIR' ..."
+    cd "$BUILDDIR";
+    try make DESTDIR="$INSTDIR" install 2>&1 | tee ${SANDBOX}/install.log
+    make install-private-headers
+
+    opm.stage.complete "install"
+}
+
+opm.postinstall() {
+    opm.stage.start "postinstall"
+    opm.stage.requires "install"
+
+    cd ${INSTDIR}
+
+    chmod -v u+w tools/lib/libtcl8.6.so
+    ln -sv tclsh8.6 tools/bin/tclsh
+
+    opm.stage.complete "postinstall"
+}
