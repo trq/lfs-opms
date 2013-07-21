@@ -23,9 +23,6 @@ opm.configure() {
 }
 
 opm.postmerge() {
-    opm.stage.start "postmerge"
-    opm.stage.requires "merge"
-
     msg "Testing Toolchain ..."
     cd "$BUILDDIR";
 
@@ -33,6 +30,4 @@ opm.postmerge() {
     ${CONFIG_TARGET}-gcc dummy.c
     readelf -l a.out | grep ': /tools' && success "Success!"
     rm -v dummy.c a.out
-
-    opm.stage.complete "postinstall"
 }
