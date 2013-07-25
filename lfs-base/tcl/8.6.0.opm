@@ -39,7 +39,9 @@ opm.postinstall() {
     cd ${INSTDIR}
 
     chmod -v u+w tools/lib/libtcl8.6.so
-    ln -sv tclsh8.6 tools/bin/tclsh
+
+    cd tools/bin
+    ln -sv tclsh8.6 tclsh
 
     opm.stage.complete "postinstall"
 }

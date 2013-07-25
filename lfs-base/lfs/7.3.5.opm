@@ -10,4 +10,6 @@ opm.merge() {
     opm lfs-base/binutils-2.23.1_2 merge purge
     opm lfs-base/gcc-4.7.2_2 merge purge
     opm lfs-base/tcl-8.6.0 merge purge
+    opm lfs-base/expect-5.45 merge purge
+    opm lfs-base/dejagnu-1.5 merge purge
 }
