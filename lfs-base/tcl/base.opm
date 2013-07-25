@@ -1,4 +1,4 @@
 sources=( "http://prdownloads.sourceforge.net/${PACKAGE_NAME}/${PACKAGE_NAME}${PACKAGE_VERSION}-src.tar.gz" )
 description="The Tcl package contains the Tool Command Language."
 
-SOURCEDIR=$WORKDIR/${PACKAGE_NAME}${PACKAGE_VERSION}
+SOURCEDIR=${WORKDIR}/${PACKAGE_NAME}${PACKAGE_VERSION}
