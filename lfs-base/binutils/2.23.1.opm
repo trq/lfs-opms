@@ -22,9 +22,12 @@ opm.configure() {
 opm.preinstall() {
     opm.stage.start "preinstall"
     opm.stage.requires "compile"
+    opm.util.requires_dir ${INSTDIR}
+
+    cd "$BUILDDIR";
 
     case $(uname -m) in
-        x86_64) mkdir -v ${CONFIG_PREFIX}/lib && ln -sv lib ${CONFIG_PREFIX}/lib64 ;;
+        x86_64) mkdir -vp ${INSTDIR}${CONFIG_PREFIX}/lib && cd ${INSTDIR}${CONFIG_PREFIX} && ln -sv lib lib64 ;;
     esac
 
     opm.stage.complete "preinstall"
