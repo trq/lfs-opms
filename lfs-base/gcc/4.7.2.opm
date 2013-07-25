@@ -75,7 +75,9 @@ opm.postinstall() {
     opm.stage.requires "install"
 
     cd "$BUILDDIR";
-    ln -sv libgcc.a `$LFS_TGT-gcc -print-libgcc-file-name | sed 's/libgcc/&_eh/'`
+    dir=$(${INSTDIR}${CONFIG_PREFIX}/bin/${CONFIG_TARGET}-gcc -print-libgcc-file-name)
+    cd ${dir%/*}
+    ln -sv libgcc.a libgcc_eh.a
 
     opm.stage.complete "postinstall"
 }
