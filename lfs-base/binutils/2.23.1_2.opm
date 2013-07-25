@@ -20,12 +20,17 @@ opm.configure() {
     opm.stage.complete "configure"
 }
 
-opm.postmerge() {
+opm.postinstall() {
+    opm.stage.start "postinstall"
+    opm.stage.requires "install"
+
     msg "Prepare the linker for 'Re-adjusting' phase ..."
 
     cd "$BUILDDIR";
 
     make -C ld clean
     make -C ld LIB_PATH=/usr/lib:/lib
-    cp -v ld/ld-new ${CONFIG_PREFIX}/bin
+    cp -v ld/ld-new ${INSTDIR}${CONFIG_PREFIX}/bin
+
+    opm.stage.complete "postinstall"
 }
