@@ -27,7 +27,7 @@ opm.install() {
     msg "Installing into '$INSTDIR' ..."
     cd "$BUILDDIR";
     try make DESTDIR="$INSTDIR" install 2>&1 | tee ${SANDBOX}/install.log
-    make DESTDIR="$INSTDIR" install-private-headers
+    try make DESTDIR="$INSTDIR" install-private-headers 2>&1 | tee ${SANDBOX}/install-private-headers.log
 
     opm.stage.complete "install"
 }
