@@ -6,7 +6,7 @@ opm.prepare() {
     msg "Preparing source ..."
     cd ${SOURCEDIR}
 
-    cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $($CONFIG_TARGET-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+    cat gcc/limitx.h gcc/glimits.h gcc/limity.h > $(dirname $($CONFIG_TARGET-gcc -print-libgcc-file-name))/include-fixed/limits.h
     cp -v gcc/Makefile.in{,.tmp}
     sed 's/^T_CFLAGS =$/& -fomit-frame-pointer/' gcc/Makefile.in.tmp > gcc/Makefile.in
 
@@ -49,9 +49,9 @@ opm.configure() {
     msg "Configuring source ..."
     cd "$BUILDDIR";
 
-    CC=$CONFIG_TARGET-gcc
-    AR=$CONFIG_TARGET-ar
-    RANLIB=$CONFIG_TARGET-ranlib
+    export CC=$CONFIG_TARGET-gcc
+    export AR=$CONFIG_TARGET-ar
+    export RANLIB=$CONFIG_TARGET-ranlib
 
     opm.util.configure                                                  \
         --prefix=${CONFIG_PREFIX:=/usr}                                 \
@@ -72,7 +72,12 @@ opm.configure() {
     opm.stage.complete "configure"
 }
 
-opm.postmerge() {
-    cd "$BUILDDIR";
-    ln -sv gcc /tools/bin/cc
+opm.postinstall() {
+    opm.stage.start "postinstall"
+    opm.stage.requires "install"
+
+    cd "${INSTDIR}${CONFIG_PREFIX}/bin";
+    ln -sv gcc cc
+
+    opm.stage.complete "postinstall"
 }
