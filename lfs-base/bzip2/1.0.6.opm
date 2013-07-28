@@ -1,1 +1,36 @@
 checksum=00b516f4704d4a7cb50a1d97e6e8e15b
+
+# Just a heads up. Bzip2 does not contain or need any
+# configure script. As such, it also does not need any
+# build directory.
+#
+# Here, we run make directlry from $SOURCEDIR
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+
+    msg "Compiling source ..."
+    cd "$SOURCEDIR";
+    try make 2>&1 | tee ${SANDBOX}/compile.log
+
+    opm.stage.complete "compile"
+}
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}
+
+    msg "Installing into '$INSTDIR' ..."
+    cd "$SOURCEDIR";
+    try make PREFIX=${INSTDIR}${CONFIG_PREFIX} install 2>&1 | tee ${SANDBOX}/install.log
+
+    opm.stage.complete "install"
+}
