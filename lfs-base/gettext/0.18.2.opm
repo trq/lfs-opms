@@ -1,1 +1,49 @@
 checksum=0c86e5af70c195ab8bd651d17d783928
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    # Temporarily edit the source directory so that we can locate configure
+    src=$SOURCEDIR
+    SOURCEDIR=$src/gettext-tools
+
+    export EMACS="no"
+
+    opm.util.configure --disable-shared
+
+    unset EMACS
+
+    SOURCEDIR=$src
+
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+
+    msg "Compiling source ..."
+    cd "$BUILDDIR";
+    try make -C gnulib-lib 2>&1 | tee ${SANDBOX}/compile.log
+    try make -C src msgfmt 2>&1 | tee -a ${SANDBOX}/compile.log
+
+    opm.stage.complete "compile"
+}
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}/${CONFIG_PREFIX}/bin
+
+    msg "Installing into '$INSTDIR' ..."
+    cd "$BUILDDIR";
+
+    cp -v src/msgfmt ${INSTDIR}${CONFIG_PREFIX}/bin 2>&1 | tee ${SANDBOX}/install.log
+
+    opm.stage.complete "install"
+}
