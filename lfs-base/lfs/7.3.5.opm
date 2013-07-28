@@ -20,4 +20,5 @@ opm.merge() {
     opm lfs-base/diffutils-3.2 merge
     opm lfs-base/file-5.13 merge
     opm lfs-base/findutils-4.4.2 merge
+    opm lfs-base/gawk-4.0.2 merge
 }
