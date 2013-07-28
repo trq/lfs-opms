@@ -12,9 +12,13 @@ opm.configure() {
     AR=${CONFIG_TARGET}-ar
     RANLIB=${CONFIG_TARGET}-ranlib
 
-    opm.util.configure              \
-        --prefix=${CONFIG_PREFIX}   \
-        --disable-nls               \
+    # See http://www.linuxfromscratch.org/lfs/errata/stable
+    # in relation to the --with-sysroot option
+
+    opm.util.configure                          \
+        --prefix=${CONFIG_PREFIX}               \
+        --disable-nls                           \
+        --with-sysroot                          \
         --with-lib-path=${CONFIG_PREFIX}/lib
 
     opm.stage.complete "configure"
