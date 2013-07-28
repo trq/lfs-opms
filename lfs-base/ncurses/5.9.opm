@@ -1,1 +1,19 @@
 checksum=8cb9c412e5f2d96bc6f459aa8c6282a1
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    opm.util.configure \
+        --prefix=${CONFIG_PREFIX:=/usr} \
+        --with-shared                   \
+        --without-debug                 \
+        --without-ada                   \
+        --enable-overwrite
+
+    opm.stage.complete "configure"
+}
