@@ -18,7 +18,6 @@ opm.configure() {
     cd "$BUILDDIR";
 
     opm.util.configure \
-        --prefix=${CONFIG_PREFIX:=/usr} \
         --without-bash-malloc
 
     opm.stage.complete "configure"

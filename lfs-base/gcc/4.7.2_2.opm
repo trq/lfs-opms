@@ -54,7 +54,6 @@ opm.configure() {
     export RANLIB=$CONFIG_TARGET-ranlib
 
     opm.util.configure                                                  \
-        --prefix=${CONFIG_PREFIX:=/usr}                                 \
         --with-local-prefix=$CONFIG_PREFIX                              \
         --with-native-system-header-dir=$CONFIG_PREFIX/include          \
         --enable-clocale=gnu                                            \

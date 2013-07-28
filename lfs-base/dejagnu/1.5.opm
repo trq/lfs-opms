@@ -1,14 +1,1 @@
 checksum=3df1cbca885e751e22d3ebd1ac64dc3c
-
-opm.configure() {
-    opm.stage.start "configure"
-    opm.stage.requires "prepare"
-    opm.util.requires_dir ${BUILDDIR}
-
-    msg "Configuring source ..."
-    cd "$BUILDDIR";
-
-    opm.util.configure --prefix=${CONFIG_PREFIX:=/usr}
-
-    opm.stage.complete "configure"
-}

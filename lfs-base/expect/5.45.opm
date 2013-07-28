@@ -21,7 +21,6 @@ opm.configure() {
     cd "$BUILDDIR";
 
     opm.util.configure \
-        --prefix=${CONFIG_PREFIX:=/usr} \
         --with-tcl=${CONFIG_PREFIX:=/usr}/lib \
         --with-tclinclude=${CONFIG_PREFIX:=/usr}/include
 

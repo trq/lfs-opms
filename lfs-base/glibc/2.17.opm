@@ -9,7 +9,6 @@ opm.configure() {
     cd "$BUILDDIR";
 
     opm.util.configure \
-        --prefix=${CONFIG_PREFIX:=/usr}                 \
         --host=${CONFIG_TARGET}                         \
         --build=$(${SOURCEDIR}/scripts/config.guess)    \
         --disable-profile                               \

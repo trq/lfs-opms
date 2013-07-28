@@ -48,7 +48,6 @@ opm.configure() {
 
     opm.util.configure \
         --target=${CONFIG_TARGET:=$(uname -m)-lfs-linux-gnu}            \
-        --prefix=${CONFIG_PREFIX:=/usr}                                 \
         --with-sysroot=$LFS                                             \
         --with-newlib                                                   \
         --without-headers                                               \

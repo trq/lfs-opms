@@ -12,7 +12,7 @@ opm.configure() {
     src=$SOURCEDIR
     SOURCEDIR=$src/unix
 
-    opm.util.configure --prefix=${CONFIG_PREFIX:=/usr} \
+    opm.util.configure
 
     SOURCEDIR=$src
 

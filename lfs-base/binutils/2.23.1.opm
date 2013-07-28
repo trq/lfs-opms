@@ -9,7 +9,6 @@ opm.configure() {
     cd "$BUILDDIR";
 
     opm.util.configure \
-        --prefix=${CONFIG_PREFIX}   \
         --with-sysroot=$LFS         \
         --with-lib-path=${CONFIG_PREFIX}/lib  \
         --target=${CONFIG_TARGET}   \

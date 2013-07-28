@@ -9,7 +9,6 @@ opm.configure() {
     cd "$BUILDDIR";
 
     opm.util.configure \
-        --prefix=${CONFIG_PREFIX:=/usr} \
         --with-shared                   \
         --without-debug                 \
         --without-ada                   \

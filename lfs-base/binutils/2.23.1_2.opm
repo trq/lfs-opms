@@ -16,7 +16,6 @@ opm.configure() {
     # in relation to the --with-sysroot option
 
     opm.util.configure                          \
-        --prefix=${CONFIG_PREFIX}               \
         --disable-nls                           \
         --with-sysroot                          \
         --with-lib-path=${CONFIG_PREFIX}/lib
