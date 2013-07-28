@@ -1,1 +1,2 @@
+description="The Make package contains a program for compiling packages."
 sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )
