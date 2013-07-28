@@ -69,6 +69,8 @@ opm.configure() {
         --with-mpfr-include=${SOURCEDIR}/mpfr/src                       \
         --with-mpfr-lib=${BUILDDIR}/mpfr/src/.libs
 
+    unset CC AR RANLIB
+
     opm.stage.complete "configure"
 }
 
