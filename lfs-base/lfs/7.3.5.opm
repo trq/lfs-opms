@@ -22,4 +22,5 @@ opm.merge() {
     opm lfs-base/findutils-4.4.2 merge
     opm lfs-base/gawk-4.0.2 merge
     opm lfs-base/gettext-0.18.2 merge
+    opm lfs-base/grep-2.14 merge
 }
