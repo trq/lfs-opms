@@ -1,1 +1,14 @@
 checksum=065ba41828644eca5dd8163446de5d64
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    opm.util.configure --enable-install-program=hostname
+
+    opm.stage.complete "configure"
+}
