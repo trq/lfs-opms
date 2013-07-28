@@ -1,1 +1,35 @@
 checksum=3fb927c7c33022f1c327f14a81c0d4b0
+
+opm.prepare() {
+    opm.stage.start "prepare"
+    opm.stage.requires "unpack"
+
+    patch -Np1 -i ${EXTRAS}/bash-4.2-fixes-11.patch
+
+    opm.stage.complete "prepare"
+}
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    opm.util.configure \
+        --prefix=${CONFIG_PREFIX:=/usr} \
+        --without-bash-malloc
+
+    opm.stage.complete "configure"
+}
+
+opm.postinstall() {
+    opm.stage.start "postinstall"
+    opm.stage.requires "install"
+
+    cd ${INSTDIR}/${CONFIG_PREFIX}/bin
+    ln -sv bash sh
+
+    opm.stage.complete "postinstall"
+}
