@@ -24,4 +24,5 @@ opm.merge() {
     opm lfs-base/gettext-0.18.2 merge
     opm lfs-base/grep-2.14 merge
     opm lfs-base/gzip-1.5 merge
+    opm lfs-base/m4-1.4.16 merge
 }
