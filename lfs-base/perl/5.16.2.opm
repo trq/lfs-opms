@@ -1,1 +1,53 @@
 checksum=2818ab01672f005a4e552a713aa27b08
+
+# This package is currently built within the $SOURCEDIR, not any $BUILDDIR
+
+opm.prepare() {
+    opm.stage.start "prepare"
+    opm.stage.requires "unpack"
+
+    # Adapt some hard-wired paths to the C library
+    cd ${SOURCEDIR}
+    patch -Np1 -i ${EXTRAS}/perl-5.16.2-libc-1.patch 
+
+    opm.stage.complete "prepare"
+}
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+
+    msg "Configuring source ..."
+    cd "$SOURCEDIR";
+
+    sh Configure -des -Dprefix=${CONFIG_PREFIX}
+
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+
+    msg "Compiling source ..."
+    cd "$SOURCEDIR";
+    try make 2>&1 | tee ${SANDBOX}/compile.log
+
+    opm.stage.complete "compile"
+}
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}${CONFIG_PREFIX}/bin ${INSTDIR}${CONFIG_PREFIX}/lib/perl5
+
+    msg "Installing into '$INSTDIR' ..."
+    cd "$SOURCEDIR";
+
+    # Only a few of the utilities and libraries, need to be installed at this time
+    cp -v perl cpan/podlators/pod2man ${INSTDIR}${CONFIG_PREFIX}/bin
+    mkdir -pv ${INSTDIR}${CONFIG_PREFIX}/lib/perl5/5.16.2
+    cp -Rv lib/* ${INSTDIR}${CONFIG_PREFIX}/lib/perl5/5.16.2
+
+    opm.stage.complete "install"
+}

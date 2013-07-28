@@ -1,1 +1,2 @@
+description="The Perl package contains the Practical Extraction and Report Language."
 sources=( "http://www.cpan.org/src/5.0/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

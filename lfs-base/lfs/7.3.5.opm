@@ -27,4 +27,5 @@ opm.merge() {
     opm lfs-base/m4-1.4.16 merge
     opm lfs-base/make-3.82 merge
     opm lfs-base/patch-2.7.1 merge
+    opm lfs-base/perl-5.16.2 merge
 }
