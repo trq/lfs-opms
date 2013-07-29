@@ -1,1 +1,12 @@
 checksum=2cee42a2ff4f1cd4f9298eeeb2264519
+
+opm.prepare() {
+    opm.stage.start "prepare"
+    opm.stage.requires "unpack"
+
+    # Fix an incompatibility between this package and Glibc-2.17
+    cd $SOURCEDIR
+    sed -i -e '/gets is a/d' gnu/stdio.in.h
+
+    opm.stage.complete "prepare"
+}
