@@ -31,4 +31,5 @@ opm.merge() {
     opm lfs-base/sed-4.2.2 merge
     opm lfs-base/tar-1.26 merge
     opm lfs-base/texinfo-5.0 merge
+    opm lfs-base/xz-5.0.4 merge
 }
