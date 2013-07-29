@@ -1,1 +1,2 @@
 sources=( "http://sourceforge.net/projects/${PACKAGE_NAME}/files/${PACKAGE_NAME}/${PACKAGE_VERSION}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )
+description="Check is a unit testing framework for C."

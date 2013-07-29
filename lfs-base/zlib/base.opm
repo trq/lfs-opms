@@ -1,1 +1,1 @@
-]ources=( "http://www.zlib.net/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )
+sources=( "http://www.zlib.net/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.bz2" )

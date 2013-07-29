@@ -1,3 +1,4 @@
 sources=( "http://prdownloads.sourceforge.net/${PACKAGE_NAME}/${PACKAGE_NAME}${PACKAGE_VERSION}.tar.gz" )
+description="The Expect package contains a program for carrying out scripted dialogues with other interactive programs."
 
 SOURCEDIR=${WORKDIR}/${PACKAGE_NAME}${PACKAGE_VERSION}

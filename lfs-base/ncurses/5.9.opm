@@ -6,7 +6,7 @@ opm.configure() {
     opm.util.requires_dir ${BUILDDIR}
 
     msg "Configuring source ..."
-    cd "$BUILDDIR";
+    cd "${BUILDDIR}";
 
     opm.util.configure \
         --with-shared                   \

@@ -38,7 +38,7 @@ opm.compile() {
 opm.install() {
     opm.stage.start "install"
     opm.stage.requires "preinstall"
-    opm.util.requires_dir ${INSTDIR}/${CONFIG_PREFIX}/bin
+    opm.util.requires_dir ${INSTDIR}${CONFIG_PREFIX}/bin
 
     msg "Installing into '$INSTDIR' ..."
     cd "$BUILDDIR";

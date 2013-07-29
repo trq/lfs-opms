@@ -1,1 +1,2 @@
 sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.gz" )
+description="The Bash package contains the Bourne-Again Shell."

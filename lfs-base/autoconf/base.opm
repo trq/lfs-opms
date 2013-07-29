@@ -1,1 +1,2 @@
 sources=( "http://ftp.gnu.org/gnu/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )
+description="Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages."

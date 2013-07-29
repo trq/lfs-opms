@@ -8,9 +8,9 @@ opm.configure() {
     msg "Configuring source ..."
     cd "$BUILDDIR";
 
-    CC=${CONFIG_TARGET}-gcc
-    AR=${CONFIG_TARGET}-ar
-    RANLIB=${CONFIG_TARGET}-ranlib
+    export CC=${CONFIG_TARGET}-gcc
+    export AR=${CONFIG_TARGET}-ar
+    export RANLIB=${CONFIG_TARGET}-ranlib
 
     # See http://www.linuxfromscratch.org/lfs/errata/stable
     # in relation to the --with-sysroot option
@@ -19,6 +19,8 @@ opm.configure() {
         --disable-nls                           \
         --with-sysroot                          \
         --with-lib-path=${CONFIG_PREFIX}/lib
+
+    unset CC AR RANLIB
 
     opm.stage.complete "configure"
 }
