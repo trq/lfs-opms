@@ -1,1 +1,0 @@
-sources=( "http://www.kernel.org/pub/linux/docs/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )

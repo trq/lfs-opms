@@ -1,0 +1,26 @@
+sources=( "http://www.kernel.org/pub/linux/docs/${PACKAGE_NAME}/${PACKAGE_NAME}-${PACKAGE_VERSION}.tar.xz" )
+description="The Man-pages package contains over 1,900 man pages."
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+    opm.stage.complete "compile"
+}
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}
+
+    msg "Installing into '$INSTDIR' ..."
+    cd "$SOURCEDIR";
+    try make DESTDIR="$INSTDIR" install 2>&1 | tee ${SANDBOX}/install.log
+
+    opm.stage.complete "install"
+}
