@@ -1,0 +1,17 @@
+checksum=093b172f907d5455a6746418ad18f5bc
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}/${CONFIG_PREFIX}/include
+
+    cd ${SOURCEDIR}
+    make mrproper
+
+    make headers_check
+    make INSTALL_HDR_PATH=dest headers_install
+    find dest/include \( -name .install -o -name ..install.cmd \) -delete
+    cp -rv dest/include/* ${INSTDIR}${CONFIG_PREFIX}/include
+
+    opm.stage.complete "install"
+}
