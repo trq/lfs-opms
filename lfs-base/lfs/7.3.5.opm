@@ -16,7 +16,7 @@ opm.merge() {
     opm lfs-base/ncurses-5.9 merge
     opm lfs-base/bash-4.2 merge
     opm lfs-base/bzip2-1.0.6 merge
-    opm lfs-base/coreutils-8.2.1 merge
+    opm lfs-base/coreutils-8.21 merge
     opm lfs-base/diffutils-3.2 merge
     opm lfs-base/file-5.13 merge
     opm lfs-base/findutils-4.4.2 merge
