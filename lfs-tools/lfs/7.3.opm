@@ -1,0 +1,35 @@
+# The virtual flag enables this package to skip any
+# stage based dependency checking / executing.
+virtual=1
+
+opm.merge() {
+    opm lfs-tools/binutils-2.23.1 merge
+    opm lfs-tools/gcc-4.7.2 merge
+    opm lfs-tools/linux-headers-3.8.1 merge
+    opm lfs-tools/glibc-2.17 merge
+    opm lfs-tools/binutils-2.23.1_2 merge
+    opm lfs-tools/gcc-4.7.2_2 merge
+    opm lfs-tools/tcl-8.6.0 merge
+    opm lfs-tools/expect-5.45 merge
+    opm lfs-tools/dejagnu-1.5 merge
+    opm lfs-tools/check-0.9.9 merge
+    opm lfs-tools/ncurses-5.9 merge
+    opm lfs-tools/bash-4.2 merge
+    opm lfs-tools/bzip2-1.0.6 merge
+    opm lfs-tools/coreutils-8.21 merge
+    opm lfs-tools/diffutils-3.2 merge
+    opm lfs-tools/file-5.13 merge
+    opm lfs-tools/findutils-4.4.2 merge
+    opm lfs-tools/gawk-4.0.2 merge
+    opm lfs-tools/gettext-0.18.2 merge
+    opm lfs-tools/grep-2.14 merge
+    opm lfs-tools/gzip-1.5 merge
+    opm lfs-tools/m4-1.4.16 merge
+    opm lfs-tools/make-3.82 merge
+    opm lfs-tools/patch-2.7.1 merge
+    opm lfs-tools/perl-5.16.2 merge
+    opm lfs-tools/sed-4.2.2 merge
+    opm lfs-tools/tar-1.26 merge
+    opm lfs-tools/texinfo-5.0 merge
+    opm lfs-tools/xz-5.0.4 merge
+}

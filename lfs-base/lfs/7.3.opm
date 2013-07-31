@@ -1,0 +1,9 @@
+# The virtual flag enables this package to skip any
+# stage based dependency checking / executing.
+virtual=1
+
+opm.merge() {
+    opm lfs-base/linux-headers-3.8.1 merge
+    opm lfs-base/man-pages-3.47 merge
+    opm lfs-base/glibc-2.17 merge
+}
