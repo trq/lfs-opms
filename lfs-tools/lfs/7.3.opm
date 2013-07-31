@@ -33,3 +33,43 @@ opm.merge() {
     opm lfs-tools/texinfo-5.0 merge
     opm lfs-tools/xz-5.0.4 merge
 }
+
+opm.pre() {
+    echo "lfs-tools in compination with lfs-base builds Linux system from scratch."
+    echo "The build scripts are all variations of the commands used in the LFS book (version $PACKAGE_VERSION})."
+    echo ""
+    echo "http://www.linuxfromscratch.org/lfs/view/stable/index.html"
+    echo ""
+    echo "There are parts of the book that are not covered by the lfs-tools & lfs-base build scripts,"
+    echo "for that reason, the book should also be used as a guide when using these build scripts."
+    echo ""
+    echo "lfs-tools starts building an LFS7.3 system from here:"
+    echo "http://www.linuxfromscratch.org/lfs/view/stable/chapter05/binutils-pass1.html"
+    echo ""
+    read -p "Are you ready to continue? " -n 1
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+        exit 1
+    fi
+}
+
+opm.post() {
+    echo "lfs-tools (and chapter 5) is now complete, once the commands below have been executed, lfs-base"
+    echo "will need to be built from within the new LFS system."
+    echo ""
+    echo "Execute the following:"
+    echo "   sudo chown -R root:root $LFS/tools"
+    echo ""
+    echo "From within the lfs-opms repo execute:"
+    echo "   ./scripts/prepare-chapter6.sh"
+    echo ""
+    echo "Read before proceeding:"
+    echo "Once you execute the following chroot.sh command you will be here in the LFS book:"
+    echo "http://www.linuxfromscratch.org/lfs/view/stable/chapter06/creatingdirs.html"
+    echo ""
+    echo "Once in the chrooted environment you will move onto installing the base system by executing:"
+    echo "  opm lfs-base/lfs-7.3 merge"
+    echo ""
+    echo "Now enter the chroot environment by executing: (from within the lfs-opms repo)"
+    echo "   ./scripts/chroot.sh"
+}
