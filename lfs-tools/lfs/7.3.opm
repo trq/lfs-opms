@@ -35,16 +35,11 @@ opm.merge() {
 }
 
 opm.pre() {
-    echo "lfs-tools in compination with lfs-base builds Linux system from scratch."
-    echo "The build scripts are all variations of the commands used in the LFS book (version $PACKAGE_VERSION})."
+    echo "lfs-tools in combination with lfs-base builds Linux system from scratch."
     echo ""
     echo "http://www.linuxfromscratch.org/lfs/view/stable/index.html"
     echo ""
-    echo "There are parts of the book that are not covered by the lfs-tools & lfs-base build scripts,"
-    echo "for that reason, the book should also be used as a guide when using these build scripts."
-    echo ""
-    echo "lfs-tools starts building an LFS7.3 system from here:"
-    echo "http://www.linuxfromscratch.org/lfs/view/stable/chapter05/binutils-pass1.html"
+    echo "lfs-tools runs through 5.4 - 5.32 of the book only. It is recommended the book be read along with runnign these scripts."
     echo ""
     read -p "Are you ready to continue? " -n 1
     if [[ ! $REPLY =~ ^[Yy]$ ]]
