@@ -1,1 +1,70 @@
 checksum=ba2f92ae7ad099090e8f86cff2f2d799
+
+opm.unpack() {
+    opm.stage.start "unpack"
+    opm.stage.requires "fetch"
+    opm.util.requires_dir ${DISTDIR} ${SOURCEDIR}
+
+    for source in "${sources[@]}"; do
+        if [ -z "$archive" ]; then archive=${sources##*/}; fi
+
+        if ! [ -f "${DISTDIR}/${archive}" ]; then die "Missing source '${archive}'."; fi
+
+        case "${source##*/}" in
+            *.tar|*.tar.bz2|*.tar.xz|*.tar.gz|l*.tar.lzma)
+                msg "Extracting ${DISTDIR}/"${archive}" ..."
+                try tar xvf "${DISTDIR}/${archive}" -C "${SOURCEDIR}"
+            ;;
+            *)
+                die "Unsupported format."
+            ;;
+        esac
+    done;
+
+    unset source
+
+    [ ! -d "$SOURCEDIR" ] && die "Source directory $SOURCEDIR specified in \$SOURCEDIR does not exist. Exiting."
+
+    opm.stage.complete "unpack"
+}
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.stage.complete "configure"
+}
+
+opm.compile() {
+    opm.stage.start "compile"
+    opm.stage.requires "configure"
+    opm.stage.complete "compile"
+}
+
+opm.install() {
+    opm.stage.start "install"
+    opm.stage.requires "preinstall"
+    opm.util.requires_dir ${INSTDIR}
+
+    cd ${SOURCEDIR}
+
+    ZONEINFO=${INSTDIR}/usr/share/zoneinfo
+    mkdir -pv $ZONEINFO/{posix,right}
+
+    for tz in etcetera southamerica northamerica europe africa antarctica asia australasia backward pacificnew solar87 solar88 solar89 systemv; do
+        zic -L /dev/null   -d $ZONEINFO       -y "sh yearistype.sh" ${tz}
+        zic -L /dev/null   -d $ZONEINFO/posix -y "sh yearistype.sh" ${tz}
+        zic -L leapseconds -d $ZONEINFO/right -y "sh yearistype.sh" ${tz}
+    done
+
+    cp -v zone.tab iso3166.tab $ZONEINFO
+    zic -d $ZONEINFO -p America/New_York
+    unset ZONEINFO
+
+    opm.stage.complete "install"
+}
+
+opm.postmerge() {
+    msg "Please run tzselect"
+    msg "Then:"
+    msg "   cp -v --remove-destination /usr/share/zoneinfo/<xxx> /etc/localtime"
+}
