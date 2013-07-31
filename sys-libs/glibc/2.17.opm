@@ -1,0 +1,91 @@
+checksum=87bf675c8ee523ebda4803e8e1cec638
+
+opm.configure() {
+    opm.stage.start "configure"
+    opm.stage.requires "prepare"
+    opm.util.requires_dir ${BUILDDIR}
+
+    msg "Configuring source ..."
+    cd "$BUILDDIR";
+
+    opm.util.configure \
+        --disable-profile           \
+        --enable-kernel=2.6.25      \
+        --libexecdir=${CONFIG_PREFIX}/lib/glibc
+
+    opm.stage.complete "configure"
+}
+
+opm.preinstall() {
+    opm.stage.start "preinstall"
+    opm.stage.requires "compile"
+
+    try make -k check 2>&1 | tee ${SANDBOX}/check.log
+    grep Error ${SANDBOX}/check.log
+
+    opm.stage.complete "preinstall"
+}
+
+opm.postinstall() {
+    opm.stage.start "postinstall"
+    opm.stage.requires "install"
+    opm.util.requires_dir ${INSTDIR}${CONFIG_PREFIX}/include/rpc
+    opm.util.requires_dir ${INSTDIR}${CONFIG_PREFIX}/include/rpcsvc
+    opm.util.requires_dir ${INSTDIR}/usr/lib/locale
+    opm.util.requires_dir ${INSTDIR}/etc/ld.so.conf.d
+
+    # Install NIS and RPC related headers that are not installed by default
+    cp -v ${SOURCEDIR}/sunrpc/rpc/*.h ${INSTDIR}${CONFIG_PREFIX}/include/rpc
+    cp -v ${SOURCEDIR}/sunrpc/rpcsvc/*.h ${INSTDIR}${CONFIG_PREFIX}/include/rpcsvc
+    cp -v ${SOURCEDIR}/nis/rpcsvc/*.h ${INSTDIR}${CONFIG_PREFIX}/include/rpcsvc
+
+    # The locales that can make the system respond in a different language were not
+    # installed by the above command. None of the locales are required, but if some
+    # of them are missing, test suites of the future packages would skip important testcases.
+    lp=${INSTDIR}/usr/lib/locale
+
+    localedef -i cs_CZ -f UTF-8 $lp/cs_CZ.UTF-8
+    localedef -i de_DE -f ISO-8859-1 $lp/de_DE
+    localedef -i de_DE@euro -f ISO-8859-15 $lp/de_DE@euro
+    localedef -i de_DE -f UTF-8 $lp/de_DE.UTF-8
+    localedef -i en_GB -f UTF-8 $lp/en_GB.UTF-8
+    localedef -i en_HK -f ISO-8859-1 $lp/en_HK
+    localedef -i en_PH -f ISO-8859-1 $lp/en_PH
+    localedef -i en_US -f ISO-8859-1 $lp/en_US
+    localedef -i en_US -f UTF-8 $lp/en_US.UTF-8
+    localedef -i es_MX -f ISO-8859-1 $lp/es_MX
+    localedef -i fa_IR -f UTF-8 $lp/fa_IR
+    localedef -i fr_FR -f ISO-8859-1 $lp/fr_FR
+    localedef -i fr_FR@euro -f ISO-8859-15 $lp/fr_FR@euro
+    localedef -i fr_FR -f UTF-8 $lp/fr_FR.UTF-8
+    localedef -i it_IT -f ISO-8859-1 $lp/it_IT
+    localedef -i it_IT -f UTF-8 $lp/it_IT.UTF-8
+    localedef -i ja_JP -f EUC-JP $lp/ja_JP
+    localedef -i ru_RU -f KOI8-R $lp/ru_RU.KOI8-R
+    localedef -i ru_RU -f UTF-8 $lp/ru_RU.UTF-8
+    localedef -i tr_TR -f UTF-8 $lp/tr_TR.UTF-8
+    localedef -i zh_CN -f GB18030 $lp/zh_CN.GB18030
+
+    localedef -v -i en_AU -f  ISO-8859-15 $lp/en_AU
+    localedef -v -i en_US -f  ISO-8859-15 $lp/en_US
+
+    cat > ${INSTDIR}/etc/nsswitch.conf << "EOF"
+passwd: files
+group: files
+shadow: files
+hosts: files dns
+networks: files
+protocols: files
+services: files
+ethers: files
+rpc: files
+EOF
+
+    cat > ${INSTDIR}/etc/ld.so.conf << "EOF"
+/usr/local/lib
+/opt/lib
+include /etc/ld.so.conf.d/*.conf
+EOF
+
+    opm.stage.complete "postinstall"
+}
