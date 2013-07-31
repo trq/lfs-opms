@@ -21,8 +21,7 @@ opm.configure() {
     opm.stage.complete "configure"
 }
 
-# TODO: check this test passes.
-opm.postmerge() {
+opm.post() {
     msg "Testing Toolchain ..."
     cd "$BUILDDIR";
 

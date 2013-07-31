@@ -63,7 +63,7 @@ opm.install() {
     opm.stage.complete "install"
 }
 
-opm.postmerge() {
+opm.post() {
     msg "Please run tzselect"
     msg "Then:"
     msg "   cp -v --remove-destination /usr/share/zoneinfo/<xxx> /etc/localtime"
